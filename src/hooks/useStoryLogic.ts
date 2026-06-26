@@ -103,7 +103,7 @@ export const useStoryLogic = () => {
           stepIndex: 3,
           type: 'slider',
           title: 'Question 1',
-          message: "On a scale of 1 to 10, how much of a nerd are you?",
+          message: "On a scale of 1 to 10, how much of a nerd do you think I am for building this mini website just to say hi? 🤓",
         };
       case 4:
         return {
