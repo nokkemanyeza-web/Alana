@@ -30,30 +30,25 @@ export const useStoryLogic = () => {
     setStep(s => {
       const next = s + 1;
       if (next === 10) {
-        // We reached the final step, send answers to Discord
-        const webhookUrl = import.meta.env.VITE_DISCORD_WEBHOOK_URL;
-        if (webhookUrl) {
-          fetch(webhookUrl, {
+        // Send answers to Formspree (Email)
+        const formspreeUrl = import.meta.env.VITE_FORMSPREE_URL;
+        if (formspreeUrl) {
+          fetch(formspreeUrl, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Accept': 'application/json'
             },
             body: JSON.stringify({
-              username: "Icebreaker Bot",
-              embeds: [{
-                title: "💌 New Icebreaker Responses!",
-                color: 0xff69b4, // Hot pink color
-                fields: [
-                  { name: "Her Vibe Today", value: answers.vibe || 'Not answered', inline: true },
-                  { name: "Your Nerd Score", value: String(answers.nerdScore || 'Not answered') + "/10", inline: true },
-                  { name: "Random Skill She Wants", value: answers.skill || 'Not answered', inline: false },
-                  { name: "What Makes Her Smile", value: answers.smile || 'Not answered', inline: false },
-                ]
-              }]
+              subject: "New responses from the Icebreaker!",
+              vibe: answers.vibe || 'Not answered',
+              nerdScore: answers.nerdScore || 'Not answered',
+              skill: answers.skill || 'Not answered',
+              smile: answers.smile || 'Not answered',
             }),
-          }).catch(err => console.error("Discord webhook error:", err));
+          }).catch(err => console.error("Formspree error:", err));
         } else {
-          console.log("No Webhook URL configured. Answers:", answers);
+          console.log("No Formspree URL configured. Answers:", answers);
         }
       }
       return next;
