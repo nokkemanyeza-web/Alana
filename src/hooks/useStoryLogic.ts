@@ -215,10 +215,25 @@ export const useStoryLogic = () => {
     }
   };
 
+  const handleInputSubmit = (val: string | number) => {
+    switch(step) {
+      case 1: handleInput('dayFeelings', val); break;
+      case 4: handleInput('skill', val); break;
+      case 5: handleInput('smile', val); break;
+      case 9: handleInput('teleport', val); break;
+      case 12: handleInput('lookUpTo', val); break;
+    }
+  };
+
+  const handleSliderSubmit = (val: number) => {
+    if (step === 3) handleInput('nerdScore', val);
+  };
+
   return {
     step,
-    currentStepData: getStepData(step),
+    currentStep: getStepData(step),
     nextStep,
-    handleInput
+    handleSliderSubmit,
+    handleInputSubmit
   };
 };

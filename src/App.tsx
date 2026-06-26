@@ -34,7 +34,7 @@ function App() {
 
             {currentStep.type === 'options' && currentStep.options && (
               <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
-                {currentStep.options.map((opt, i) => (
+                {currentStep.options.map((opt: { label: string; action: () => void }, i: number) => (
                   <motion.button
                     key={i}
                     whileHover={{ scale: 1.03, y: -2 }}
