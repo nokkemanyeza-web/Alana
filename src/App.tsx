@@ -63,7 +63,7 @@ function App() {
                 onClick={nextStep}
                 className="mt-8 px-10 py-4 rounded-full font-bold text-white bg-gradient-to-r from-pink-400 to-rose-400 shadow-[0_4px_14px_0_rgba(251,113,133,0.39)] hover:shadow-[0_6px_20px_rgba(251,113,133,0.23)] hover:bg-[rgba(251,113,133,0.9)] transition-all"
               >
-                Continue ✨
+                {currentStep.stepIndex === 14 ? "Finish ✨" : "Continue ✨"}
               </motion.button>
             )}
           </GlassCard>

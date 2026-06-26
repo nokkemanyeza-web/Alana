@@ -203,7 +203,7 @@ export const useStoryLogic = () => {
           type: 'message',
           title: 'You survived the interrogation! 🎉',
           message: "Here is a little something for you:\n\n\"Let all that you do be done in love.\"\n– 1 Corinthians 16:14\n\nThank you for humoring me and playing along! ✨",
-          showContinue: false,
+          showContinue: true,
         };
       default:
         return {
