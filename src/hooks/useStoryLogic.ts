@@ -61,8 +61,8 @@ export const useStoryLogic = () => {
         return {
           stepIndex: 0,
           type: 'message',
-          title: 'Hi there.',
-          message: "Since we just met, I thought a normal 'hey' was a bit too boring.\n\nSo I built this.",
+          title: 'Heyy Lana 🥰',
+          message: "Since we just met, I thought a normal 'hey' was a bit too boring.\n\nSo I built this ✨",
           showContinue: true,
         };
       case 1:

@@ -1,47 +1,67 @@
-import React, { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
-const Background: React.FC = () => {
-  // Generate a memoized array of stars/particles so they don't re-render on every state change in App
-  const particles = useMemo(() => {
-    return Array.from({ length: 40 }).map((_, i) => ({
+const EMOJIS = ['✨', '🌸', '💖', '☁️', '⭐', '🎈'];
+
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  size: number;
+  duration: number;
+  delay: number;
+  emoji: string;
+}
+
+const Background = () => {
+  const [particles, setParticles] = useState<Particle[]>([]);
+
+  useEffect(() => {
+    const particleCount = 20;
+    const newParticles: Particle[] = Array.from({ length: particleCount }).map((_, i) => ({
       id: i,
-      size: Math.random() * 3 + 1,
-      x: Math.random() * 100, // percentage
-      y: Math.random() * 100, // percentage
-      duration: Math.random() * 20 + 20, // seconds
-      delay: Math.random() * 10,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 20 + 10,
+      duration: Math.random() * 20 + 20,
+      delay: Math.random() * 5,
+      emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
     }));
+    setParticles(newParticles);
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden bg-gradient-to-br from-rose-100 via-purple-100 to-indigo-100">
+    <div className="fixed inset-0 z-0 overflow-hidden bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-100">
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute rounded-full bg-white opacity-40"
-          style={{
-            width: p.size,
-            height: p.size,
-            left: `${p.x}%`,
-            top: `${p.y}%`,
-            boxShadow: '0 0 8px 2px rgba(255, 255, 255, 0.2)',
+          className="absolute opacity-40 select-none pointer-events-none"
+          initial={{
+            x: `${p.x}vw`,
+            y: `${p.y}vh`,
+            scale: 0,
           }}
           animate={{
-            y: [0, -100, 0],
-            x: [0, 50, 0],
-            opacity: [0.2, 0.6, 0.2],
+            x: [`${p.x}vw`, `${p.x + (Math.random() * 20 - 10)}vw`, `${p.x}vw`],
+            y: [`${p.y}vh`, `${p.y - 30}vh`, `${p.y}vh`],
             scale: [1, 1.2, 1],
+            rotate: [0, 180, 360],
           }}
           transition={{
             duration: p.duration,
+            delay: p.delay,
             repeat: Infinity,
             ease: "linear",
-            delay: p.delay,
           }}
-        />
+          style={{
+            fontSize: `${p.size}px`,
+            filter: 'blur(1px)',
+          }}
+        >
+          {p.emoji}
+        </motion.div>
       ))}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/20 via-transparent to-black/5 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/30 via-transparent to-pink-200/10 pointer-events-none" />
     </div>
   );
 };

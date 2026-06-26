@@ -17,22 +17,22 @@ const Slider = ({ onSubmit }: SliderProps) => {
           max="10"
           value={value}
           onChange={(e) => setValue(Number(e.target.value))}
-          className="w-full h-3 bg-white/40 rounded-lg appearance-none cursor-pointer accent-purple-500"
+          className="w-full h-4 bg-white/60 rounded-full appearance-none cursor-pointer accent-pink-500 shadow-inner"
         />
-        <div className="flex justify-between w-full mt-2 text-sm text-gray-600 font-medium px-1">
+        <div className="flex justify-between w-full mt-3 text-sm text-gray-500 font-bold px-1">
           <span>1 (Not at all)</span>
-          <span className="text-xl font-bold text-purple-700">{value}</span>
+          <span className="text-2xl font-bold text-pink-500 drop-shadow-sm">{value}</span>
           <span>10 (Very)</span>
         </div>
       </div>
 
       <motion.button
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => onSubmit(value)}
-        className="w-full py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-400 to-pink-400 shadow-lg transition-all"
+        className="w-full py-4 rounded-full font-bold text-white bg-gradient-to-r from-pink-400 to-rose-400 shadow-[0_4px_14px_0_rgba(251,113,133,0.39)] hover:shadow-[0_6px_20px_rgba(251,113,133,0.23)] hover:bg-[rgba(251,113,133,0.9)] transition-all"
       >
-        Submit Verdict
+        Submit Verdict ✨
       </motion.button>
     </div>
   );

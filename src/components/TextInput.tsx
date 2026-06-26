@@ -16,7 +16,7 @@ const TextInput = ({ onSubmit, placeholder = "Type here..." }: TextInputProps) =
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder={placeholder}
-        className="w-full px-6 py-4 rounded-2xl bg-white/40 border border-white/50 text-gray-800 placeholder-gray-500 shadow-inner focus:outline-none focus:ring-2 focus:ring-purple-400 transition-all text-lg"
+        className="w-full px-6 py-4 rounded-full bg-white/60 border-2 border-white/80 text-gray-800 placeholder-gray-400 shadow-inner focus:outline-none focus:ring-4 focus:ring-pink-300/50 transition-all text-lg font-medium"
         autoFocus
         onKeyDown={(e) => {
           if (e.key === 'Enter' && value.trim()) {
@@ -25,13 +25,13 @@ const TextInput = ({ onSubmit, placeholder = "Type here..." }: TextInputProps) =
         }}
       />
       <motion.button
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.95 }}
         disabled={!value.trim()}
         onClick={() => onSubmit(value)}
-        className="w-full py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-400 to-pink-400 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transition-all"
+        className="w-full py-4 rounded-full font-bold text-white bg-gradient-to-r from-pink-400 to-rose-400 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_4px_14px_0_rgba(251,113,133,0.39)] hover:shadow-[0_6px_20px_rgba(251,113,133,0.23)] hover:bg-[rgba(251,113,133,0.9)] transition-all"
       >
-        Send
+        Send ✨
       </motion.button>
     </div>
   );
